@@ -1,0 +1,52 @@
+{
+  "name": "dsh-software-factory",
+  "version": "0.1.0",
+  "description": "DeepSeek Harness 插件「软件工厂」：调查、澄清、批准需求与计划、串行开发、自验、独立评审和用户验收。",
+  "license": "MIT",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "src",
+    "cordis.patch.yml",
+    "README.md",
+    "CAPABILITIES.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "dsh": ">=0.1.0-rc.6"
+  },
+  "dependencies": {
+    "@deepseek-ai/dsh-storage-domain": "^0.1.0-rc.6",
+    "zod": "^4.4.3"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh-typert-protocol": ">=0.1.0-rc.6"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh-typert-protocol": {
+      "optional": true
+    }
+  },
+  "scripts": {
+    "test": "node --test test/*.js",
+    "check": "node --check lib/index.js && node --check lib/client.js && node --check lib/dirty.js"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime"
+      ]
+    }
+  }
+}
